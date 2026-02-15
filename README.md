@@ -1,1 +1,1 @@
-# FlaggedBooks
+# Collaborative Reading Club

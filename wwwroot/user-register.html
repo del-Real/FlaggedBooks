@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlaggedBooks | Register</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/user-auth.js" defer></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Logo (Left)-->
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+
+      <!-- Menu (Center) -->
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="my-books.html">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html">Lecture clubs</a>
+      </nav>
+
+      <!-- Tools (Right) -->
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+
+    <main class="main-register">
+      <div class="auth-container">
+        <div class="auth-register-image"></div>
+
+        <div class="auth-panel">
+          <h1 class="auth-title">Join us!</h1>
+
+          <hr class="auth-separator" />
+
+          <div class="auth-items">
+            <div class="auth-subitem">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="auth-input"
+                name="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="auth-subitem">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="auth-input"
+                name="username"
+                autocomplete="username"
+                required
+              />
+            </div>
+
+            <div class="auth-subitem">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="auth-input"
+                name="password"
+                autocomplete="new-password"
+                minlength="5"
+                required
+              />
+            </div>
+
+            <div class="auth-subitem">
+              <label for="repeatPassword">Repeat Password</label>
+              <input
+                type="password"
+                id="repeatPassword"
+                class="auth-input"
+                name="repeatPassword"
+                autocomplete="new-password"
+                minlength="5"
+                required
+              />
+            </div>
+
+            <div class="auth-primary-area">
+              <button onclick="evaluateRegister()" class="btn-primary">
+                Register
+              </button>
+              <span class="invalid-login">Invalid registration. Try again</span>
+            </div>
+
+            <div class="auth-secondary-area">
+              <span>Already have an account? </span>
+              <button
+                onclick="window.location.href='user-login.html'"
+                class="btn-secondary"
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

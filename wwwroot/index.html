@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flagged Books</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Logo (Left)-->
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+
+      <!-- Menu (Center) -->
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="my-books.html">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html">Lecture clubs</a>
+      </nav>
+
+      <!-- Tools (Right) -->
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+
+    <main class="main-index">
+      <div class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span style="font-weight: 200">Discover.</span>
+            <span style="font-weight: 400">Read.</span>
+            <span style="font-weight: 600">Discuss.</span>
+            <span style="font-weight: 800; color: #ff2b00">Together</span>
+          </h1>
+          <hr class="hero-separator" />
+          <p>
+            Join a community of readers who
+            <strong>pick books, track progress and share </strong>
+            through-all in one place.
+          </p>
+          <p>
+            From discovering hidden gems to engaging in meaningful discussions,
+            FlaggedBooks makes reading more social and rewarding.
+          </p>
+          <div class="hero-buttons">
+            <button
+              onclick="window.location.href='book-discovery.html'"
+              class="btn-primary"
+            >
+              Discover
+            </button>
+            <button
+              onclick="window.location.href='lecture-club.html'"
+              class="btn-primary"
+            >
+              Join a club
+            </button>
+          </div>
+        </div>
+        <div class="hero-image"></div>
+      </div>
+      <div class="home-info">
+        <div class="home-info-content">
+          <h1>
+            What is
+            <span style="font-weight: 300"
+              ><span style="font-weight: 400; color: #ff2b00">Flagged</span
+              >Books?</span
+            >
+          </h1>
+          <p>We are your digital reading club.</p>
+          <p>
+            Create or join book gropus, discover new titles, track your reading
+            progress, and spark meaningful conversations.
+          </p>
+          <div class="home-info-icons">
+            <div class="home-info-column">
+              <span class="home-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                  <path
+                    d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                  ></path>
+                </svg>
+              </span>
+              <span><strong>Discover</strong> new books</span>
+            </div>
+            <div class="home-info-column">
+              <span class="home-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                  <path
+                    d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"
+                  ></path>
+                </svg>
+              </span>
+              <span><strong>Share</strong> your progess</span>
+            </div>
+
+            <div class="home-info-column">
+              <span class="home-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                  <path
+                    d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM84,116a12,12,0,1,0,12,12A12,12,0,0,0,84,116Zm88,0a12,12,0,1,0,12,12A12,12,0,0,0,172,116Zm60,12A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z"
+                  ></path>
+                </svg>
+              </span>
+              <span><strong>Discuss</strong> with your club</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-instructions">
+        <div class="home-instructions-image"></div>
+        <div class="home-instructions-content">
+          <h1 class="home-instructions-title">How does it work?</h1>
+          <hr class="home-instructions-separator" />
+          <h3>Create or Join a Club</h3>
+          <span>Invite your friends or find a group that fits your style</span>
+
+          <h3>Pick a book together</h3>
+          <span>Vote or rank options to decide your next group read</span>
+
+          <h3>Read & Discuss</h3>
+          <span>Track progress and chat about each chapter in real time.</span>
+        </div>
+      </div>
+
+      <div class="home-banner">
+        <div class="home-banner-content">
+          <h2 class="home-banner-title">Start your reading journey today</h2>
+          <h4 class="home-banner-subtitle">
+            It's free, simple, and made for book lovers like you!
+          </h4>
+        </div>
+        <button
+          onclick="window.location.href='user-register.html'"
+          class="btn-banner"
+        >
+          Register Now →
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

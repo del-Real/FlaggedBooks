@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum Post | Flagged Books</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/forum-post.js" defer></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Logo (Left)-->
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+
+      <!-- Menu (Center) -->
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="my-books.html">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html">Lecture clubs</a>
+      </nav>
+
+      <!-- Tools (Right) -->
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+
+    <main>
+      <div class="forum-post-container">
+        <!-- Back Button -->
+        <button class="btn-back" id="btn-back">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 256 256"
+          >
+            <path
+              d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
+            ></path>
+          </svg>
+          Back to Book
+        </button>
+
+        <!-- Post Header -->
+        <div class="post-header">
+          <h1 class="post-title" id="post-title">Loading...</h1>
+          <div class="post-meta">
+            <span class="post-author" id="post-author">Author</span>
+            <span class="post-date" id="post-date">Date</span>
+          </div>
+        </div>
+
+        <!-- Original Post Content -->
+        <div class="post-content-card">
+          <div class="post-content" id="post-content">
+            Loading post content...
+          </div>
+        </div>
+
+        <!-- Replies Section -->
+        <div class="replies-section">
+          <h2 class="replies-header">
+            Replies <span class="replies-count" id="replies-count">(0)</span>
+          </h2>
+
+          <div class="replies-list" id="replies-list">
+            <!-- Replies will be loaded here -->
+          </div>
+
+          <!-- Reply Form -->
+          <div class="reply-form-container">
+            <h3>Add a Reply</h3>
+            <div class="toolbar">
+              <button
+                class="toolbar-btn"
+                id="btn-mark-spoiler"
+                title="Mark selected text as spoiler"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"
+                  ></path>
+                </svg>
+                Spoiler
+              </button>
+            </div>
+            <textarea
+              id="reply-content"
+              class="reply-textarea"
+              placeholder="Write your reply..."
+              rows="5"
+            ></textarea>
+            <button class="btn-submit-reply" id="btn-submit-reply">
+              Post Reply
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

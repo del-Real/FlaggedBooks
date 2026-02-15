@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flagged Books | Book Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/book-details.js" defer></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Logo (Left)-->
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+
+      <!-- Menu (Center) -->
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="my-books.html">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html">Lecture clubs</a>
+      </nav>
+
+      <!-- Tools (Right) -->
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+
+    <main class="main-book-details">
+      <div class="book-details-container">
+        <div class="book-details-cover">
+          <img id="book-cover" alt="book-cover" />
+          <button class="btn-book-details">Currently Reading it</button>
+          <button class="btn-book-details">One of my Favourites</button>
+        </div>
+        <div class="book-details">
+          <h1 class="book-details-title" id="book-title"></h1>
+          <span class="author-wrapper"
+            >by <span class="author" id="book-author"></span
+          ></span>
+          <hr class="book-separator" />
+          <p id="book-description"></p>
+        </div>
+      </div>
+
+      <div class="book-info-container">
+        <hr class="book-separator" />
+        <div class="book-info-grid">
+          <!-- Column 1: Rating -->
+          <div class="book-info-column">
+            <div class="book-info-item">
+              <div class="book-label"></div>
+              <div class="value rating-value">
+                <span id="book-rating"></span>
+                <span class="votes" id="book-votes"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Publisher, Publication date, Language, Print length -->
+          <div class="book-info-column">
+            <div class="book-info-item">
+              <div class="book-label">Publisher</div>
+              <div class="value" id="book-publisher">Penguin (Transworld)</div>
+            </div>
+
+            <div class="book-info-item">
+              <div class="book-label">Publication date</div>
+              <div class="value" id="book-date">19 Sept. 2024</div>
+            </div>
+
+            <div class="book-info-item">
+              <div class="book-label">Language</div>
+              <div class="value" id="book-language">English</div>
+            </div>
+
+            <div class="book-info-item">
+              <div class="book-label">Print length</div>
+              <div class="value" id="book-length">240 pages</div>
+            </div>
+          </div>
+
+          <!-- Column 3: ISBN-10, ISBN-13, Item weight, Dimensions -->
+          <div class="book-info-column">
+            <div class="book-info-item">
+              <div class="book-label">ISBN-10</div>
+              <div class="value" id="book-isbn10">1804996386</div>
+            </div>
+
+            <div class="book-info-item">
+              <div class="book-label">ISBN-13</div>
+              <div class="value" id="book-isbn13">978-1804996386</div>
+            </div>
+
+            <div class="book-info-item">
+              <div class="book-label">Open Library ID</div>
+              <div class="value" id="book-openlibrary-id">OL22990323M</div>
+            </div>
+
+            <div class="book-info-item">
+              <div class="book-label">Work ID</div>
+              <div class="value" id="book-work-id">OL2897798W</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forum Section -->
+      <div class="forum-container">
+        <div class="forum-header">
+          <svg
+            class="forum-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#fff"
+            viewBox="0 0 256 256"
+          >
+            <path
+              d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"
+            ></path>
+          </svg>
+          <h2 class="forum-title">Forum</h2>
+        </div>
+
+        <div class="forum-posts" id="forum-posts">
+          <!-- Forum posts will be loaded here by JavaScript -->
+          <div style="text-align: center; padding: 2rem; color: #999">
+            Loading forum posts...
+          </div>
+        </div>
+
+        <button class="btn-create-post" id="btn-create-post">
+          <span class="plus-icon">+</span>
+          Create new post
+        </button>
+      </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div class="modal" id="create-post-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Create New Post</h3>
+          <button class="modal-close" id="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input
+            type="text"
+            id="post-title"
+            class="post-input"
+            placeholder="Post title..."
+            maxlength="200"
+          />
+          <div class="toolbar">
+            <button
+              class="toolbar-btn"
+              id="btn-mark-spoiler-modal"
+              type="button"
+              title="Mark selected text as spoiler"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"
+                ></path>
+              </svg>
+              Spoiler
+            </button>
+          </div>
+          <textarea
+            id="post-content"
+            class="post-textarea"
+            placeholder="What would you like to discuss about this book?"
+            rows="6"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" id="btn-cancel">Cancel</button>
+          <button class="btn-submit" id="btn-submit-post">Post</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

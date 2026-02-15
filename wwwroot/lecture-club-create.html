@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Lecture Club | Create Lecture Club</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/lecture-club-create.js"></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Logo (Left)-->
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+
+      <!-- Menu (Center) -->
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="my-books.html">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html">Lecture clubs</a>
+      </nav>
+
+      <!-- Tools (Right) -->
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+    <div class="create-club-container">
+      <div class="create-club-header">
+        <h1>Create a Lecture Club</h1>
+        <p>Start your own reading community</p>
+      </div>
+
+      <div id="errorMessage" class="error-message"></div>
+
+      <form id="createClubForm">
+        <div class="form-group">
+          <label for="clubTitle">Club Name *</label>
+          <input
+            type="text"
+            id="clubTitle"
+            name="title"
+            placeholder="e.g., Classic Literature Club"
+            required
+            maxlength="100"
+          />
+          <div class="char-count"><span id="titleCount">0</span>/100</div>
+        </div>
+
+        <div class="form-group">
+          <label for="clubGenre">Genre *</label>
+          <input
+            type="text"
+            id="clubGenre"
+            name="genre"
+            placeholder="e.g., Fiction, Science, History"
+            required
+            maxlength="50"
+          />
+          <div class="genre-suggestions">
+            <span class="genre-tag" onclick="selectGenre('Fiction')"
+              >Fiction</span
+            >
+            <span class="genre-tag" onclick="selectGenre('Science Fiction')"
+              >Science Fiction</span
+            >
+            <span class="genre-tag" onclick="selectGenre('Mystery')"
+              >Mystery</span
+            >
+            <span class="genre-tag" onclick="selectGenre('History')"
+              >History</span
+            >
+            <span class="genre-tag" onclick="selectGenre('Biography')"
+              >Biography</span
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="clubDescription">Description</label>
+          <textarea
+            id="clubDescription"
+            name="description"
+            placeholder="Describe your club's focus, goals, or what makes it special..."
+            maxlength="500"
+          ></textarea>
+          <div class="char-count"><span id="descCount">0</span>/500</div>
+        </div>
+
+        <div class="form-group">
+          <label>Cover Image (Optional)</label>
+          <div
+            class="cover-upload-section"
+            id="coverUploadSection"
+            onclick="document.getElementById('coverImageInput').click()"
+          >
+            <img id="coverPreview" class="cover-preview" alt="Cover preview" />
+            <div class="upload-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                fill="#dedede"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V158.75l-26.07-26.06a16,16,0,0,0-22.63,0l-20,20-44-44a16,16,0,0,0-22.62,0L40,149.37V56ZM40,172l52-52,80,80H40Zm176,28H194.63l-36-36,20-20L216,181.38V200ZM144,100a12,12,0,1,1,12,12A12,12,0,0,1,144,100Z"
+                ></path>
+              </svg>
+            </div>
+            <div class="upload-text">Click to upload a cover image</div>
+            <div class="upload-subtext">PNG, JPG up to 2MB</div>
+          </div>
+          <input
+            type="file"
+            id="coverImageInput"
+            accept="image/png,image/jpeg,image/jpg"
+            onchange="handleImageUpload(event)"
+          />
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn btn-secondary" onclick="goBack()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" id="createButton">
+            Create Club
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="toast" class="toast"></div>
+  </body>
+</html>

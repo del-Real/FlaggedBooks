@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flagged Books | Lecture Club</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- SignalR for chat functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@7.0.0/dist/browser/signalr.min.js"></script>
+
+    <script src="js/lecture-club-page.js" defer></script>
+    <script src="js/lecture-club-chat.js" defer></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="my-books.html">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html" class="active">Lecture clubs</a>
+      </nav>
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+
+    <main class="main-lc-page">
+      <!-- Pending Invitations Section -->
+      <div
+        id="invitations-section"
+        class="invitations-section"
+        style="display: none"
+      >
+        <div class="invitation-card">
+          <h3>You have a pending invitation for this club!</h3>
+          <p id="invitation-text"></p>
+          <div class="invitation-actions">
+            <button class="btn-primary" onclick="acceptInvitation()">
+              Accept
+            </button>
+            <button class="btn-secondary" onclick="rejectInvitation()">
+              Decline
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Club Details Header with Book of the Month -->
+      <div class="club-details-container">
+        <div class="club-details-header">
+          <div class="club-details-cover" id="club-cover"></div>
+          <div class="club-details">
+            <h1 class="club-details-title" id="club-title">Loading...</h1>
+            <hr class="club-separator" />
+            <p id="club-description">Loading...</p>
+
+            <!-- Action buttons -->
+            <div class="club-actions">
+              <button class="btn-primary" id="btn-join" onclick="joinClub()">
+                Join Club
+              </button>
+              <button class="btn-primary" id="btn-leave" onclick="leaveClub()">
+                Leave Club
+              </button>
+              <button
+                class="btn-secondary"
+                id="btn-invite"
+                onclick="showInviteModal()"
+              >
+                Invite User
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="club-info-container">
+          <hr class="club-separator" />
+          <div class="club-info-grid">
+            <div class="club-info-column">
+              <div class="club-info-item">
+                <div class="club-label">Club ID</div>
+                <div class="value" id="club-id">Loading...</div>
+              </div>
+            </div>
+
+            <div class="club-info-column">
+              <div class="club-info-item">
+                <div class="club-label">Genre</div>
+                <div class="value" id="club-genre-info">Loading...</div>
+              </div>
+            </div>
+
+            <div class="club-info-column">
+              <div class="club-info-item">
+                <div class="club-label">Created Date</div>
+                <div class="value" id="club-created-date">Loading...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="book-voting-container">
+          <hr class="club-separator" />
+          <h2 class="voting-title">Book Voting</h2>
+
+          <!-- VOTING CONTROL BUTTONS -->
+          <button
+            class="btn-voting"
+            id="btn-start-voting"
+            onclick="startVotingSession()"
+            style="display: none"
+          >
+            Start Book Voting
+          </button>
+          <button
+            class="btn-voting"
+            id="btn-open-voting"
+            onclick="openVotingPhase()"
+            style="display: none"
+          >
+            Open Voting
+          </button>
+          <button
+            class="btn-voting"
+            id="btn-close-voting"
+            onclick="closeVoting()"
+            style="display: none"
+          >
+            Close Voting
+          </button>
+          <!-- BOOK OF THE MONTH -->
+          <div
+            class="book-of-month-sidebar"
+            id="book-of-month-section"
+            style="display: none"
+          >
+            <div class="book-of-month-sidebar-header">
+              <span class="book-of-month-badge-small">Book of the Month</span>
+            </div>
+            <a
+              href="#"
+              id="book-of-month-link"
+              class="book-of-month-sidebar-link"
+            >
+              <div class="book-of-month-sidebar-cover">
+                <img id="book-of-month-cover-img" alt="Book of the Month" />
+              </div>
+            </a>
+            <div class="book-of-month-sidebar-info">
+              <h4
+                class="book-of-month-sidebar-title"
+                id="book-of-month-book-title"
+              >
+                Loading...
+              </h4>
+              <p class="book-of-month-sidebar-author" id="book-of-month-author">
+                by Unknown
+              </p>
+              <p class="book-of-month-sidebar-date" id="book-of-month-selected">
+                Selected on...
+              </p>
+              <a
+                href="#"
+                id="book-of-month-details-btn"
+                class="btn-view-details"
+              >
+                View Details →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOOK VOTING SECTION -->
+        <div
+          class="club-voting-container"
+          id="book-voting-section"
+          style="display: none"
+        >
+          <hr class="club-separator" />
+          <div class="voting-header">
+            <div>
+              <h2 class="voting-title">Book Voting</h2>
+              <p class="voting-phase">No active voting session</p>
+            </div>
+          </div>
+
+          <div class="book-proposals-grid" id="book-proposals-grid">
+            <div class="members-loading">
+              Propose the book that you want to read this month
+            </div>
+          </div>
+        </div>
+
+        <!-- Shared reading list -->
+        <div class="club-books-container">
+          <hr class="club-separator" />
+          <h2 class="books-title">Club Reading List</h2>
+          <p class="books-subtitle">
+            Books that this club is currently reading/has read
+          </p>
+
+          <div class="club-books-grid" id="club-books-grid">
+            <div class="books-loading">Loading books...</div>
+          </div>
+        </div>
+
+        <!-- CLUB MEMBERS SECTION -->
+        <div class="club-members-container">
+          <hr class="club-separator" />
+          <div class="club-members-header">
+            <h2 class="members-title">Club Members (</h2>
+            <h2 class="members-title value" id="club-users">Loading...</h2>
+            <h2 class="members-title">)</h2>
+          </div>
+
+          <div class="members-grid" id="members-grid">
+            <div class="members-loading">Loading members...</div>
+          </div>
+        </div>
+
+        <!-- LIVE CHAT SECTION -->
+        <div class="club-chat-container">
+          <hr class="club-separator" />
+          <h2 class="chat-title">Club Chat</h2>
+
+          <div class="chat-box">
+            <div class="chat-header">
+              <div class="chat-status">
+                <span id="connection-status">Connecting...</span>
+              </div>
+              <div class="chat-info">
+                <span id="current-username-display"></span>
+              </div>
+            </div>
+
+            <div class="chat-messages-container">
+              <div id="chat-messages" class="chat-messages">
+                <!-- Messages will be added here dynamically -->
+              </div>
+              <div
+                id="typing-indicator"
+                class="typing-indicator"
+                style="display: none"
+              >
+                <span class="typing-text"></span>
+                <span class="typing-dots">
+                  <span>.</span><span>.</span><span>.</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="chat-input-container">
+              <input
+                type="text"
+                id="message-input"
+                class="chat-input"
+                placeholder="Type your message..."
+                maxlength="500"
+              />
+              <button id="send-button" class="chat-send-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invite Modal -->
+      <div class="modal" id="invite-modal">
+        <div class="modal-content">
+          <span class="modal-close" onclick="closeInviteModal()">&times;</span>
+          <h2>Invite User to Club</h2>
+          <form onsubmit="inviteUser(event)">
+            <input
+              type="email"
+              id="invite-email"
+              placeholder="Enter user email"
+              required
+              class="modal-input"
+            />
+            <button type="submit" class="btn-primary">Send Invite</button>
+          </form>
+          <div id="invite-message" class="invite-message"></div>
+        </div>
+      </div>
+      <!-- Propose Book Modal -->
+      <div class="modal" id="propose-book-modal">
+        <div class="modal-content">
+          <span class="modal-close" onclick="closeProposeBookModal()"
+            >&times;</span
+          >
+          <h2>Propose a Book</h2>
+          <form onsubmit="proposeBook(event)">
+            <input
+              type="text"
+              id="propose-isbn"
+              placeholder="ISBN"
+              required
+              class="modal-input"
+            />
+            <input
+              type="text"
+              id="propose-title"
+              placeholder="Book Title"
+              required
+              class="modal-input"
+            />
+            <input
+              type="text"
+              id="propose-author"
+              placeholder="Author"
+              required
+              class="modal-input"
+            />
+            <button type="submit" class="btn-primary">Propose Book</button>
+          </form>
+          <div id="propose-message" class="invite-message"></div>
+        </div>
+      </div>
+
+      <div class="modal" id="propose-favorites-modal">
+        <div class="modal-content modal-large">
+          <span class="modal-close" onclick="closeFavoritesModal()"
+            >&times;</span
+          >
+          <h2>Choose a Book from Your Favorites</h2>
+          <p style="color: #64748b; margin-bottom: 1.5rem">
+            Select one of your favorite books to propose to the club
+          </p>
+          <div class="favorites-books-grid" id="favorites-books-grid">
+            <!-- Favorite books will load here -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

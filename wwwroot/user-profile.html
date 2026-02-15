@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flagged Books | Profile</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/user-profile.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/user-profile.js" defer></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/FlaggedBooks_favicon.svg"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Logo (Left)-->
+      <a href="index.html" aria-label="Go to Home">
+        <img
+          class="logo"
+          src="assets/FlaggedBooks_logo.svg"
+          alt="FlaggedBooks Logo"
+        />
+      </a>
+
+      <!-- Menu (Center) -->
+      <nav class="menu" id="menu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="my-books.html" class="active">My books</a>
+        <a href="book-discovery.html">Discover</a>
+        <a href="lecture-club.html">Lecture clubs</a>
+      </nav>
+
+      <!-- Tools (Right) -->
+      <div class="header-tools">
+        <div class="search-container">
+          <input
+            class="search-box"
+            type="search"
+            placeholder="Search"
+            id="search-input"
+            aria-label="Search books"
+          />
+          <div class="header-search-results" id="search-results"></div>
+        </div>
+
+        <a href="user-login.html" class="login-link" aria-label="Go to login">
+          <div class="user-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path
+                d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <hr class="header-separator" />
+
+    <main class="main-user-profile">
+      <div class="profile-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="user-profile">
+            <!-- Profile Header -->
+            <div class="profile-header">
+              <h2>Loading...</h2>
+              <span class="user-id">ID: --</span>
+              <span class="user-role">Role: --</span>
+            </div>
+
+            <!-- Profile Actions -->
+            <div class="profile-actions">
+              <button id="cancel-edit-btn" class="btn btn-secondary hidden">
+                Cancel
+              </button>
+              <button onclick="logout()" class="btn btn-danger">Log Out</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="profile-content">
+          <!-- Statistics Section -->
+          <section class="content-section">
+            <h3>Your Stats</h3>
+            <div id="stats-container">
+              <p style="text-align: center; color: #999">
+                Loading statistics...
+              </p>
+            </div>
+          </section>
+
+          <!-- Invitations Section -->
+          <section class="content-section">
+            <h3>Lecture Club Invitations</h3>
+            <p class="section-description">
+              Invitation codes you've received from other members
+            </p>
+            <div id="invitations-container">
+              <p class="no-invitations">Loading invitation codes...</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
